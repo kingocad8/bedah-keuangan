@@ -1,0 +1,97 @@
+/* Bedah Keuangan — tema "Meja Bedah": kertas kerja analis */
+:root {
+  --kertas: #FAF6EE;
+  --tinta: #0B3B3B;
+  --amber: #C77F1A;
+  --amber-soft: #E8A33D;
+  --arang: #3E4A4A;
+  --abu: #6E7777;
+  --garis: #E5DCC4;
+  --merah: #C0392B;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--kertas);
+  color: var(--arang);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+/* header */
+.site-header {
+  border-bottom: 3px solid var(--tinta);
+  padding: 28px 0 20px;
+  text-align: center;
+}
+.brand {
+  font-size: 28px; font-weight: 800; letter-spacing: 8px;
+  text-decoration: none; color: var(--tinta);
+}
+.brand small { display: block; font-size: 12px; letter-spacing: 5px; color: var(--amber); font-weight: 700; margin-top: 6px; }
+nav { margin-top: 14px; font-size: 15px; }
+nav a { color: var(--abu); text-decoration: none; margin: 0 14px; letter-spacing: 2px; font-weight: 600; }
+nav a:hover { color: var(--tinta); }
+
+/* hero */
+.hero { text-align: center; padding: 64px 0 40px; }
+.hero h1 { font-size: 42px; line-height: 1.25; margin-bottom: 16px; color: var(--tinta); font-weight: 800; }
+.hero p { font-size: 19px; color: var(--arang); max-width: 600px; margin: 0 auto; }
+.ornament { color: var(--amber-soft); letter-spacing: 12px; margin: 28px 0; text-align: center; }
+
+/* article cards */
+.cards { padding: 10px 0 60px; }
+.card {
+  display: block; text-decoration: none; color: var(--arang);
+  border: 1px solid var(--garis); background: #fff;
+  padding: 28px 32px; margin-bottom: 20px; border-radius: 6px;
+}
+.card:hover { border-color: var(--amber-soft); }
+.card .kicker { font-size: 13px; letter-spacing: 4px; color: var(--amber); font-weight: 800; }
+.card h2 { font-size: 25px; margin: 10px 0 8px; line-height: 1.35; color: var(--tinta); }
+.card p { font-size: 16px; color: var(--arang); }
+.card .meta { font-size: 13px; color: var(--abu); margin-top: 10px; letter-spacing: 1px; }
+
+/* article page */
+.article-head { text-align: center; padding: 56px 0 8px; }
+.article-head .kicker { font-size: 14px; letter-spacing: 5px; color: var(--amber); font-weight: 800; }
+.article-head h1 { font-size: 38px; line-height: 1.3; margin: 16px 0; color: var(--tinta); font-weight: 800; }
+.article-head .dek { font-size: 19px; color: var(--arang); font-style: italic; }
+.article-head .meta { font-size: 13px; color: var(--abu); margin-top: 14px; letter-spacing: 1px; }
+article { padding: 24px 0 40px; font-size: 18px; }
+article p { margin-bottom: 1.4em; }
+article h2 { font-size: 27px; margin: 2em 0 .7em; line-height: 1.35; color: var(--tinta); font-weight: 800; }
+article h2::before { content: "\25C6  "; color: var(--amber-soft); font-size: .6em; vertical-align: middle; }
+article a { color: var(--tinta); text-decoration-color: var(--amber-soft); text-decoration-thickness: 2px; }
+.lede { font-size: 21px; }
+.lede::first-letter {
+  font-size: 3.2em; float: left; line-height: .9;
+  padding: 6px 12px 0 0; color: var(--amber-soft); font-weight: 800;
+}
+figure { margin: 2.2em 0; }
+figure img { width: 100%; display: block; border: 1px solid var(--garis); border-radius: 4px; }
+figcaption { font-size: 14px; color: var(--abu); margin-top: 10px; font-style: italic; }
+blockquote {
+  border-left: 4px solid var(--amber-soft); margin: 2em 0; padding: .6em 0 .6em 1.4em;
+  font-size: 21px; font-weight: 700; color: var(--tinta);
+}
+table.ledger { width: 100%; border-collapse: collapse; margin: 2em 0; font-size: 17px; }
+table.ledger th { text-align: left; font-size: 13px; letter-spacing: 3px; color: var(--abu); padding: 10px 8px; border-bottom: 3px solid var(--tinta); }
+table.ledger td { padding: 12px 8px; border-bottom: 1px solid var(--garis); }
+table.ledger td.num { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-weight: 700; text-align: right; white-space: nowrap; }
+table.ledger tr.total td { border-bottom: 4px double var(--tinta); font-weight: 800; color: var(--tinta); }
+.num-neg { color: var(--merah); }
+.ref-box { border: 1px solid var(--garis); background: #fff; padding: 28px 32px; margin: 3em 0; border-radius: 6px; }
+.ref-box h2 { margin-top: 0; }
+.ref-box h2::before { content: ""; }
+.ref-box ol { margin-left: 1.4em; font-size: 16px; }
+.ref-box li { margin-bottom: .7em; }
+.about { border-top: 1px solid var(--garis); padding: 48px 0; }
+.about h2 { font-size: 15px; letter-spacing: 5px; color: var(--tinta); margin-bottom: 16px; }
+.about p { margin-bottom: 1em; font-size: 17px; }
+footer { border-top: 3px solid var(--tinta); padding: 26px 0 40px; text-align: center; font-size: 13px; letter-spacing: 3px; color: var(--abu); }
+.cta { text-align: center; border: 1px solid var(--garis); background: #fff; border-radius: 6px; padding: 8px 32px 32px; margin: 3em 0; }
+.cta p { font-size: 18px; }
+.back { display: inline-block; margin: 32px 0 8px; color: var(--tinta); font-weight: 700; text-decoration: none; }
+.back:hover { color: var(--amber); }
