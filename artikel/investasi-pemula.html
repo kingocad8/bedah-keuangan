@@ -9,25 +9,27 @@
 </head>
 <body>
 <header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="../index.html">BEDAH KEUANGAN<small>KEUANGAN PRIBADI &bull; KELUARGA</small></a>
+  <div class="wrap-wide">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark">+</span>
+      <span class="brand-name">BEDAH KEUANGAN<small>KEUANGAN PRIBADI &bull; KELUARGA</small></span>
+    </a>
     <nav>
       <a href="../index.html">ARTIKEL</a>
       <a href="../index.html#tentang">TENTANG</a>
     </nav>
   </div>
+  <div class="progress" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
 </header>
 
 <main class="wrap">
   <div class="article-head">
-    <div class="kicker">INVESTASI PEMULA</div>
+    <span class="kicker">INVESTASI PEMULA</span>
     <h1>Deposito, Reksadana, atau Emas? Bedah Jujur Buat Pemula</h1>
     <div class="rule"></div>
     <p class="dek">Punya Rp10 juta nganggur. Tiga pilihan paling populer buat pemula — dibedah angkanya satu per satu: bunga bersih setelah pajak, return riil lawan inflasi, sampai spread emas yang bikin beli pagi jual sore langsung rugi.</p>
     <div class="meta">16 OKT 2026 &bull; 6 MENIT BACA &bull; BEDAH KEUANGAN</div>
   </div>
-
-  <div class="ornament">&#9670; &#9670; &#9670;</div>
 
   <article>
     <p class="lede">Andi akhirnya bisa nyisihin Rp1 juta tiap bulan. Masalah barunya: duitnya mau diparkir di mana? Katanya deposito paling aman. Katanya emas nggak pernah rugi. Katanya reksadana cuan. Tiga-tiganya "katanya". Mari ganti katanya dengan angka — per Oktober 2026.</p>
@@ -116,18 +118,68 @@
       <p style="margin-top:1em;font-size:15px;"><strong>Catatan:</strong> angka −0,88% adalah ilustrasi hitungan sederhana (2,4% − 3,28%), bukan return resmi. Contoh spread emas memakai pasangan harga same-day 15/10/2026.</p>
     </div>
 
-    <div class="cta">
-      <div class="ornament">&#9670; &#9670; &#9670;</div>
+    <section class="resep" aria-label="Resep Keuangan">
+      <div class="resep-head">
+        <span class="resep-mark">Rx</span>
+        <div>
+          <h2>Resep Keuangan</h2>
+          <p class="resep-sub">Langkah hari ini — centang kalau sudah dilakukan.</p>
+        </div>
+      </div>
+      <ul class="resep-list">
+        <li><label><input type="checkbox"><span>Sebelum milih, jawab 3 pertanyaan: duitnya buat apa, dipakainya kapan, kuat kalau nilainya turun sementara?</span></label></li>
+        <li><label><input type="checkbox"><span>Dana dipakai di bawah 1 tahun: deposito; parkir 1&ndash;3 tahun: reksadana pasar uang; lindung nilai 5+ tahun: emas</span></label></li>
+        <li><label><input type="checkbox"><span>Hitung return riil, bukan nominal — deposito bersih 2,4% setelah pajak 20% masih kalah dari inflasi 3,28%</span></label></li>
+        <li><label><input type="checkbox"><span>Ingat spread emas &plusmn;7,9% — emas bukan alat trading harian</span></label></li>
+        <li><label><input type="checkbox"><span>Hindari 3 jebakan pemula: investasi tanpa tujuan, FOMO ikut-ikutan, dan salah jenis reksadana</span></label></li>
+      </ul>
+      <p class="resep-note">Centangan ini hanya berlaku di halaman ini — tidak tersimpan permanen.</p>
+    </section>
+
+    <div class="article-cta">
       <p>Suka bedah kayak gini? Versi ringkasnya ada di Instagram <strong>@bedahkeuangan</strong> — follow biar nggak ketinggalan bedah berikutnya.</p>
-      <p style="margin-top:1em;font-size:16px;"><em>Next: kenapa tanggal 20 dompet selalu kering — bedah arus kas gaji bulanan.</em></p>
+      <p class="next"><em>Next: kenapa tanggal 20 dompet selalu kering — bedah arus kas gaji bulanan.</em></p>
     </div>
   </article>
 </main>
 
-<footer>
+<footer class="site-footer">
   <div class="wrap">
     BEDAH KEUANGAN &bull; KEUANGAN PRIBADI &amp; KELUARGA &bull; 2026
   </div>
 </footer>
+
+<div class="sticky-cta" id="stickyCta" role="complementary" aria-label="Bedah Gaji Tracker">
+  <div class="sticky-cta-inner">
+    <div class="sticky-cta-text">
+      <strong>Amankan Arus Kas &mdash; Lihat Bedah Gaji Tracker</strong>
+      <small>Launching segera, info di story @bedahkeuangan</small>
+    </div>
+    <a class="sticky-cta-btn" href="https://www.instagram.com/bedahkeuangan">Lihat Tracker</a>
+    <button class="sticky-cta-close" id="ctaClose" aria-label="Tutup">&times;</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var fill = document.getElementById('progressFill');
+  var cta = document.getElementById('stickyCta');
+  var dismissed = false;
+  function onScroll() {
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var frac = max > 0 ? doc.scrollTop / max : 0;
+    fill.style.width = (frac * 100).toFixed(1) + '%';
+    fill.classList.toggle('has-progress', frac > 0.005);
+    if (!dismissed && frac >= 0.30) cta.classList.add('is-visible');
+  }
+  document.getElementById('ctaClose').addEventListener('click', function () {
+    dismissed = true;
+    cta.classList.remove('is-visible');
+  });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 </body>
 </html>

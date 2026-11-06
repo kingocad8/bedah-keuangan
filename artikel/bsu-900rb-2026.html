@@ -9,25 +9,27 @@
 </head>
 <body>
 <header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="../index.html">BEDAH KEUANGAN<small>KEUANGAN PRIBADI &bull; KELUARGA</small></a>
+  <div class="wrap-wide">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark">+</span>
+      <span class="brand-name">BEDAH KEUANGAN<small>KEUANGAN PRIBADI &bull; KELUARGA</small></span>
+    </a>
     <nav>
       <a href="../index.html">ARTIKEL</a>
       <a href="../index.html#tentang">TENTANG</a>
     </nav>
   </div>
+  <div class="progress" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
 </header>
 
 <main class="wrap">
   <div class="article-head">
-    <div class="kicker">BANTUAN PEMERINTAH</div>
+    <span class="kicker">BANTUAN PEMERINTAH</span>
     <h1>BSU Rp900 Ribu 2026: Rencana Nyata, Cairnya Belum Pasti</h1>
     <div class="rule"></div>
     <p class="dek">Pemerintah menyiapkan Rp300 ribu &times; 3 bulan untuk 13,3 juta pekerja, cair sekaligus. Tapi kriteria resmi belum keluar, tanggal cair belum ada, dan link "daftar BSU" yang nyebar di WA itu hoaks. Bedah faktanya biar nggak ketipu kabar.</p>
     <div class="meta">16 OKT 2026 &bull; 6 MENIT BACA &bull; BEDAH KEUANGAN</div>
   </div>
-
-  <div class="ornament">&#9670; &#9670; &#9670;</div>
 
   <article>
     <p class="lede">Kabar Rp900 ribu bikin grup WA rame: Bantuan Subsidi Upah (BSU) 2026 katanya cair Oktober–Desember. Ada yang langsung cek NIK, ada yang forward link "pendaftaran", ada yang sudah keburu ngarep. Tahan dulu. Rencananya memang nyata — tapi antara rencana dan uang masuk rekening, masih ada jurang berisi tanda tanya.</p>
@@ -90,18 +92,68 @@
       <p style="margin-top:1em;font-size:15px;"><strong>Catatan redaksi:</strong> hingga artikel ini ditulis, BSU 2026 berstatus <strong>rencana</strong>. Kriteria resmi, jadwal, dan mekanisme penyaluran mengikuti pengumuman resmi Kemnaker.</p>
     </div>
 
-    <div class="cta">
-      <div class="ornament">&#9670; &#9670; &#9670;</div>
+    <section class="resep" aria-label="Resep Keuangan">
+      <div class="resep-head">
+        <span class="resep-mark">Rx</span>
+        <div>
+          <h2>Resep Keuangan</h2>
+          <p class="resep-sub">Langkah hari ini — centang kalau sudah dilakukan.</p>
+        </div>
+      </div>
+      <ul class="resep-list">
+        <li><label><input type="checkbox"><span>Cek status BSU hanya di kanal resmi: bsu.kemnaker.go.id, aplikasi JMO, atau Pospay</span></label></li>
+        <li><label><input type="checkbox"><span>Pastikan NIK lo valid dan kepesertaan BPJS Ketenagakerjaan lo aktif</span></label></li>
+        <li><label><input type="checkbox"><span>Jangan klik link “daftar BSU” dari grup WA — BSU tidak pakai pendaftaran mandiri via link</span></label></li>
+        <li><label><input type="checkbox"><span>Jangan pernah kasih OTP, PIN, atau data rekening ke siapa pun dengan dalih pencairan bantuan</span></label></li>
+        <li><label><input type="checkbox"><span>Pantau kanal resmi Kemnaker untuk kriteria dan tanggal cair — per 15 Okt 2026 keduanya belum diumumkan</span></label></li>
+      </ul>
+      <p class="resep-note">Centangan ini hanya berlaku di halaman ini — tidak tersimpan permanen.</p>
+    </section>
+
+    <div class="article-cta">
       <p>Suka bedah kayak gini? Versi ringkasnya ada di Instagram <strong>@bedahkeuangan</strong> — follow biar nggak ketinggalan bedah berikutnya.</p>
-      <p style="margin-top:1em;font-size:16px;"><em>Next: Deposito, reksadana, atau emas? Bedah jujur tiga pilihan investasi paling populer buat pemula.</em></p>
+      <p class="next"><em>Next: Deposito, reksadana, atau emas? Bedah jujur tiga pilihan investasi paling populer buat pemula.</em></p>
     </div>
   </article>
 </main>
 
-<footer>
+<footer class="site-footer">
   <div class="wrap">
     BEDAH KEUANGAN &bull; KEUANGAN PRIBADI &amp; KELUARGA &bull; 2026
   </div>
 </footer>
+
+<div class="sticky-cta" id="stickyCta" role="complementary" aria-label="Bedah Gaji Tracker">
+  <div class="sticky-cta-inner">
+    <div class="sticky-cta-text">
+      <strong>Amankan Arus Kas &mdash; Lihat Bedah Gaji Tracker</strong>
+      <small>Launching segera, info di story @bedahkeuangan</small>
+    </div>
+    <a class="sticky-cta-btn" href="https://www.instagram.com/bedahkeuangan">Lihat Tracker</a>
+    <button class="sticky-cta-close" id="ctaClose" aria-label="Tutup">&times;</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var fill = document.getElementById('progressFill');
+  var cta = document.getElementById('stickyCta');
+  var dismissed = false;
+  function onScroll() {
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var frac = max > 0 ? doc.scrollTop / max : 0;
+    fill.style.width = (frac * 100).toFixed(1) + '%';
+    fill.classList.toggle('has-progress', frac > 0.005);
+    if (!dismissed && frac >= 0.30) cta.classList.add('is-visible');
+  }
+  document.getElementById('ctaClose').addEventListener('click', function () {
+    dismissed = true;
+    cta.classList.remove('is-visible');
+  });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 </body>
 </html>

@@ -9,25 +9,27 @@
 </head>
 <body>
 <header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="../index.html">BEDAH KEUANGAN<small>KEUANGAN PRIBADI &bull; KELUARGA</small></a>
+  <div class="wrap-wide">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark">+</span>
+      <span class="brand-name">BEDAH KEUANGAN<small>KEUANGAN PRIBADI &bull; KELUARGA</small></span>
+    </a>
     <nav>
       <a href="../index.html">ARTIKEL</a>
       <a href="../index.html#tentang">TENTANG</a>
     </nav>
   </div>
+  <div class="progress" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
 </header>
 
 <main class="wrap">
   <div class="article-head">
-    <div class="kicker">GAJI &amp; POTONGAN</div>
+    <span class="kicker">GAJI &amp; POTONGAN</span>
     <h1>Gaji Rp5 Juta, Masuk Rekening Rp4,8 Juta: Bedah Tuntas Potongan Gaji</h1>
     <div class="rule"></div>
     <p class="dek">Rp200 ribu lenyap tiap bulan dari slip gaji Andi. Ke mana perginya? Bedah lengkap: rinciannya satu per satu, teori bruto vs neto, kenapa PPh 21-nya Rp0, dan kabar baiknya — Rp1,8 juta per tahun ternyata balik lagi ke kantongnya.</p>
     <div class="meta">16 OKT 2026 &bull; 5 MENIT BACA &bull; BEDAH KEUANGAN</div>
   </div>
-
-  <div class="ornament">&#9670; &#9670; &#9670;</div>
 
   <article>
     <p class="lede">Andi, 24 tahun, lajang, ngekos di Jakarta. Tiap bulan slip gajinya tertulis Rp5 juta — tapi yang mendarat di rekening cuma Rp4,8 juta. Rp200 ribu raib entah ke mana. Kalau lo karyawan, kemungkinan besar lo juga Andi. Bedanya, setelah baca artikel ini, lo tahu persis ke mana perginya tiap rupiah.</p>
@@ -88,18 +90,68 @@
       <p style="margin-top:1em;font-size:15px;"><strong>Catatan:</strong> simulasi memakai profil Andi (24 tahun, lajang, tanpa tanggungan, gaji Rp5 juta/bulan). Besaran iuran dalam persen mengikuti ketentuan program BPJS Ketenagakerjaan dan BPJS Kesehatan yang berlaku.</p>
     </div>
 
-    <div class="cta">
-      <div class="ornament">&#9670; &#9670; &#9670;</div>
+    <section class="resep" aria-label="Resep Keuangan">
+      <div class="resep-head">
+        <span class="resep-mark">Rx</span>
+        <div>
+          <h2>Resep Keuangan</h2>
+          <p class="resep-sub">Langkah hari ini — centang kalau sudah dilakukan.</p>
+        </div>
+      </div>
+      <ul class="resep-list">
+        <li><label><input type="checkbox"><span>Cek slip gaji tiap bulan — angka potongan harus konsisten; berubah tanpa penjelasan, tanya langsung ke HRD</span></label></li>
+        <li><label><input type="checkbox"><span>Susun anggaran dari THP (neto), bukan gaji bruto — anggaran dari angka bruto itu resep dompet jebol di tanggal 20</span></label></li>
+        <li><label><input type="checkbox"><span>Kalau resign atau kena PHK, klaim JHT lo lewat aplikasi JMO (KTP, KK, kartu peserta, paklaring) setelah 1 bulan</span></label></li>
+        <li><label><input type="checkbox"><span>Jangan tanda tangan slip yang tidak lo pahami — tanda tangan artinya lo setuju dengan angkanya</span></label></li>
+        <li><label><input type="checkbox"><span>Ingat batas TER 0%: gaji sampai Rp5,4 juta per bulan (lajang tanpa tanggungan) — kalau naik melewatinya, PPh 21 lo tidak Rp0 lagi</span></label></li>
+      </ul>
+      <p class="resep-note">Centangan ini hanya berlaku di halaman ini — tidak tersimpan permanen.</p>
+    </section>
+
+    <div class="article-cta">
       <p>Suka bedah kayak gini? Versi ringkasnya ada di Instagram <strong>@bedahkeuangan</strong> — follow biar nggak ketinggalan bedah berikutnya.</p>
-      <p style="margin-top:1em;font-size:16px;"><em>Next: BSU Rp900 ribu — rencana pemerintah yang bikin grup WA rame, tapi cairnya masih tanda tanya.</em></p>
+      <p class="next"><em>Next: BSU Rp900 ribu — rencana pemerintah yang bikin grup WA rame, tapi cairnya masih tanda tanya.</em></p>
     </div>
   </article>
 </main>
 
-<footer>
+<footer class="site-footer">
   <div class="wrap">
     BEDAH KEUANGAN &bull; KEUANGAN PRIBADI &amp; KELUARGA &bull; 2026
   </div>
 </footer>
+
+<div class="sticky-cta" id="stickyCta" role="complementary" aria-label="Bedah Gaji Tracker">
+  <div class="sticky-cta-inner">
+    <div class="sticky-cta-text">
+      <strong>Amankan Arus Kas &mdash; Lihat Bedah Gaji Tracker</strong>
+      <small>Launching segera, info di story @bedahkeuangan</small>
+    </div>
+    <a class="sticky-cta-btn" href="https://www.instagram.com/bedahkeuangan">Lihat Tracker</a>
+    <button class="sticky-cta-close" id="ctaClose" aria-label="Tutup">&times;</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var fill = document.getElementById('progressFill');
+  var cta = document.getElementById('stickyCta');
+  var dismissed = false;
+  function onScroll() {
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var frac = max > 0 ? doc.scrollTop / max : 0;
+    fill.style.width = (frac * 100).toFixed(1) + '%';
+    fill.classList.toggle('has-progress', frac > 0.005);
+    if (!dismissed && frac >= 0.30) cta.classList.add('is-visible');
+  }
+  document.getElementById('ctaClose').addEventListener('click', function () {
+    dismissed = true;
+    cta.classList.remove('is-visible');
+  });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 </body>
 </html>

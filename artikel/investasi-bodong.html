@@ -9,25 +9,27 @@
 </head>
 <body>
 <header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="../index.html">BEDAH KEUANGAN<small>KEUANGAN PRIBADI &bull; KELUARGA</small></a>
+  <div class="wrap-wide">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark">+</span>
+      <span class="brand-name">BEDAH KEUANGAN<small>KEUANGAN PRIBADI &bull; KELUARGA</small></span>
+    </a>
     <nav>
       <a href="../index.html">ARTIKEL</a>
       <a href="../index.html#tentang">TENTANG</a>
     </nav>
   </div>
+  <div class="progress" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
 </header>
 
 <main class="wrap">
   <div class="article-head">
-    <div class="kicker">WASPADA INVESTASI</div>
+    <span class="kicker">WASPADA INVESTASI</span>
     <h1>Dijanjikan Untung Pasti? Itu Ciri Pertama Investasi Bodong</h1>
     <div class="rule"></div>
     <p class="dek">Modal diam, untung besar, tanpa risiko, slot terbatas. Tawaran kayak gini selalu terdengar seperti jalan pintas — dan selalu berakhir dengan pola yang sama. Bedah lima cirinya menurut Satgas PASTI OJK, sebelum lo yang jadi korban berikutnya.</p>
     <div class="meta">20 OKT 2026 &bull; 6 MENIT BACA &bull; BEDAH KEUANGAN</div>
   </div>
-
-  <div class="ornament">&#9670; &#9670; &#9670;</div>
 
   <article>
     <p class="lede">Bayangin lo dimasukkan ke grup chat (<em>contoh ilustrasi</em>). Isinya tangkapan layar orang-orang yang "baru cair profit". Adminnya nawarin paket: setor modal, diamkan, dan terima untung besar tiap bulan — pasti, tanpa risiko, dijamin nggak rugi. Ada hitung mundur "slot terbatas". Rasanya seperti kesempatan sekali seumur hidup. Padahal menurut <strong>Satgas PASTI OJK</strong> — satuan tugas pemberantasan aktivitas keuangan ilegal, dulu dikenal sebagai Satgas Waspada Investasi — tawaran itu memuat hampir semua ciri investasi bodong dalam satu pesan.</p>
@@ -90,18 +92,68 @@
       <p style="margin-top:1em;font-size:15px;"><strong>Catatan:</strong> contoh tawaran di pembuka artikel adalah ilustrasi. Artikel ini sengaja tidak mencantumkan angka total kerugian akibat investasi bodong — estimasi yang beredar antar-sumber berbeda jauh dan belum dapat diverifikasi silang, jadi kami memilih tidak menampilkannya daripada menampilkan angka yang belum pasti.</p>
     </div>
 
-    <div class="cta">
-      <div class="ornament">&#9670; &#9670; &#9670;</div>
+    <section class="resep" aria-label="Resep Keuangan">
+      <div class="resep-head">
+        <span class="resep-mark">Rx</span>
+        <div>
+          <h2>Resep Keuangan</h2>
+          <p class="resep-sub">Langkah hari ini — centang kalau sudah dilakukan.</p>
+        </div>
+      </div>
+      <ul class="resep-list">
+        <li><label><input type="checkbox"><span>Uji setiap tawaran dengan rumus 2L: Legal (berizin &amp; diawasi OJK?) dan Logis (imbal hasil masuk akal?)</span></label></li>
+        <li><label><input type="checkbox"><span>Cek legalitas entitas di ojk.go.id atau hubungi Kontak OJK 157 — sebelum setor, bukan sesudahnya</span></label></li>
+        <li><label><input type="checkbox"><span>Kenali 5 cirinya: untung nggak masuk akal, skema Ponzi, nggak berizin, diburu-buru, dana susah ditarik</span></label></li>
+        <li><label><input type="checkbox"><span>Jangan setor saat ditekan waktu — “slot terbatas” dan “promo berakhir malam ini” adalah alat penjualan mereka</span></label></li>
+        <li><label><input type="checkbox"><span>Ingat: untung selalu sebanding risiko — janji “untung besar, pasti, tanpa risiko” bertentangan dengan cara kerja investasi</span></label></li>
+      </ul>
+      <p class="resep-note">Centangan ini hanya berlaku di halaman ini — tidak tersimpan permanen.</p>
+    </section>
+
+    <div class="article-cta">
       <p>Suka bedah kayak gini? Versi ringkasnya ada di Instagram <strong>@bedahkeuangan</strong> — follow biar nggak ketinggalan bedah berikutnya.</p>
-      <p style="margin-top:1em;font-size:16px;"><em>Belum baca fondasinya? Mulai dari dana darurat — bantalan yang harus beres sebelum lo mikir investasi apa pun.</em></p>
+      <p class="next"><em>Belum baca fondasinya? Mulai dari dana darurat — bantalan yang harus beres sebelum lo mikir investasi apa pun.</em></p>
     </div>
   </article>
 </main>
 
-<footer>
+<footer class="site-footer">
   <div class="wrap">
     BEDAH KEUANGAN &bull; KEUANGAN PRIBADI &amp; KELUARGA &bull; 2026
   </div>
 </footer>
+
+<div class="sticky-cta" id="stickyCta" role="complementary" aria-label="Bedah Gaji Tracker">
+  <div class="sticky-cta-inner">
+    <div class="sticky-cta-text">
+      <strong>Amankan Arus Kas &mdash; Lihat Bedah Gaji Tracker</strong>
+      <small>Launching segera, info di story @bedahkeuangan</small>
+    </div>
+    <a class="sticky-cta-btn" href="https://www.instagram.com/bedahkeuangan">Lihat Tracker</a>
+    <button class="sticky-cta-close" id="ctaClose" aria-label="Tutup">&times;</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var fill = document.getElementById('progressFill');
+  var cta = document.getElementById('stickyCta');
+  var dismissed = false;
+  function onScroll() {
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var frac = max > 0 ? doc.scrollTop / max : 0;
+    fill.style.width = (frac * 100).toFixed(1) + '%';
+    fill.classList.toggle('has-progress', frac > 0.005);
+    if (!dismissed && frac >= 0.30) cta.classList.add('is-visible');
+  }
+  document.getElementById('ctaClose').addEventListener('click', function () {
+    dismissed = true;
+    cta.classList.remove('is-visible');
+  });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 </body>
 </html>

@@ -9,25 +9,27 @@
 </head>
 <body>
 <header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="../index.html">BEDAH KEUANGAN<small>KEUANGAN PRIBADI &bull; KELUARGA</small></a>
+  <div class="wrap-wide">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark">+</span>
+      <span class="brand-name">BEDAH KEUANGAN<small>KEUANGAN PRIBADI &bull; KELUARGA</small></span>
+    </a>
     <nav>
       <a href="../index.html">ARTIKEL</a>
       <a href="../index.html#tentang">TENTANG</a>
     </nav>
   </div>
+  <div class="progress" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
 </header>
 
 <main class="wrap">
   <div class="article-head">
-    <div class="kicker">BUDGETING</div>
+    <span class="kicker">BUDGETING</span>
     <h1>50/30/20 Itu Patokan, Bukan Penjara: Bedah Budget Versi Gaji UMR</h1>
     <div class="rule"></div>
     <p class="dek">Formulanya gampang: 50% kebutuhan, 30% keinginan, 20% tabungan. Tapi penerapannya jauh beda — tergantung hidup siapa yang dimasukkan ke dalamnya. Bedah pakai dua orang bergaji sama: Rp5,4 juta.</p>
     <div class="meta">20 OKT 2026 &bull; 8 MENIT BACA &bull; BEDAH KEUANGAN</div>
   </div>
-
-  <div class="ornament">&#9670; &#9670; &#9670;</div>
 
   <article>
     <p class="lede">Andi, 24 tahun, lajang, ngekos di Jakarta. Citra, 32 tahun, menikah, dua anak. Gaji mereka sama persis: Rp5,4 juta per bulan — pembulatan UMP DKI Jakarta 2025. Keduanya mencoba formula budgeting paling terkenal di dunia, 50/30/20. Buat Andi, formulanya jalan mulus. Buat Citra, formulanya patah sebelum bulan dimulai. Artikel ini membedah kenapa — dan apa versi realistisnya.</p>
@@ -107,18 +109,67 @@
       <p style="margin-top:1em;font-size:15px;"><strong>Catatan:</strong> Andi dan Citra adalah persona fiktif; gaji Rp5,4 juta adalah pembulatan UMP DKI 2025 untuk memudahkan simulasi. Rincian pengeluaran keduanya adalah simulasi ilustratif, bukan survei harga — pos dan angka di kota lo bisa berbeda, prinsip penyesuaiannya yang sama.</p>
     </div>
 
-    <div class="cta">
-      <div class="ornament">&#9670; &#9670; &#9670;</div>
+    <section class="resep" aria-label="Resep Keuangan">
+      <div class="resep-head">
+        <span class="resep-mark">Rx</span>
+        <div>
+          <h2>Resep Keuangan</h2>
+          <p class="resep-sub">Langkah hari ini — centang kalau sudah dilakukan.</p>
+        </div>
+      </div>
+      <ul class="resep-list">
+        <li><label><input type="checkbox"><span>Hitung dulu pos wajib lo yang sebenarnya — jangan paksa gaji masuk 50/30/20</span></label></li>
+        <li><label><input type="checkbox"><span>Lindungi tabungan sebisa mungkin; di contoh Citra tabungan tetap 20%</span></label></li>
+        <li><label><input type="checkbox"><span>Saat menyesuaikan, pangkas keinginan dulu (Citra 30% → 10%), bukan tabungan</span></label></li>
+        <li><label><input type="checkbox"><span>Sesuaikan persentase dengan fase hidup — lajang 50/30/20, berkeluarga bisa 70/10/20</span></label></li>
+      </ul>
+      <p class="resep-note">Centangan ini hanya berlaku di halaman ini — tidak tersimpan permanen.</p>
+    </section>
+
+    <div class="article-cta">
       <p>Suka bedah kayak gini? Versi ringkasnya ada di Instagram <strong>@bedahkeuangan</strong> — follow biar nggak ketinggalan bedah berikutnya.</p>
-      <p style="margin-top:1em;font-size:16px;"><em>Next: Investasi bodong — lima ciri yang selalu sama, menurut Satgas PASTI OJK.</em></p>
+      <p class="next"><em>Next: Investasi bodong — lima ciri yang selalu sama, menurut Satgas PASTI OJK.</em></p>
     </div>
   </article>
 </main>
 
-<footer>
+<footer class="site-footer">
   <div class="wrap">
     BEDAH KEUANGAN &bull; KEUANGAN PRIBADI &amp; KELUARGA &bull; 2026
   </div>
 </footer>
+
+<div class="sticky-cta" id="stickyCta" role="complementary" aria-label="Bedah Gaji Tracker">
+  <div class="sticky-cta-inner">
+    <div class="sticky-cta-text">
+      <strong>Amankan Arus Kas &mdash; Lihat Bedah Gaji Tracker</strong>
+      <small>Launching segera, info di story @bedahkeuangan</small>
+    </div>
+    <a class="sticky-cta-btn" href="https://www.instagram.com/bedahkeuangan">Lihat Tracker</a>
+    <button class="sticky-cta-close" id="ctaClose" aria-label="Tutup">&times;</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var fill = document.getElementById('progressFill');
+  var cta = document.getElementById('stickyCta');
+  var dismissed = false;
+  function onScroll() {
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var frac = max > 0 ? doc.scrollTop / max : 0;
+    fill.style.width = (frac * 100).toFixed(1) + '%';
+    fill.classList.toggle('has-progress', frac > 0.005);
+    if (!dismissed && frac >= 0.30) cta.classList.add('is-visible');
+  }
+  document.getElementById('ctaClose').addEventListener('click', function () {
+    dismissed = true;
+    cta.classList.remove('is-visible');
+  });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 </body>
 </html>

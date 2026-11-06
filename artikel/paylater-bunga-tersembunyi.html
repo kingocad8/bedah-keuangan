@@ -9,25 +9,27 @@
 </head>
 <body>
 <header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="../index.html">BEDAH KEUANGAN<small>KEUANGAN PRIBADI &bull; KELUARGA</small></a>
+  <div class="wrap-wide">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark">+</span>
+      <span class="brand-name">BEDAH KEUANGAN<small>KEUANGAN PRIBADI &bull; KELUARGA</small></span>
+    </a>
     <nav>
       <a href="../index.html">ARTIKEL</a>
       <a href="../index.html#tentang">TENTANG</a>
     </nav>
   </div>
+  <div class="progress" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
 </header>
 
 <main class="wrap">
   <div class="article-head">
-    <div class="kicker">PAYLATER</div>
+    <span class="kicker">PAYLATER</span>
     <h1>Katanya 0%, Kok Bayarnya Lebih? Bedah Bunga Paylater yang Nggak Kelihatan</h1>
     <div class="rule"></div>
     <p class="dek">Dewi checkout barang Rp1 juta pakai cicilan 3 bulan yang "katanya 0%". Pas ditotal, yang keluar dari kantongnya Rp1.098.500. Ke mana perginya Rp98.500? Bedah bonnya baris demi baris.</p>
     <div class="meta">20 OKT 2026 &bull; 7 MENIT BACA &bull; BEDAH KEUANGAN</div>
   </div>
-
-  <div class="ornament">&#9670; &#9670; &#9670;</div>
 
   <article>
     <p class="lede">Dewi baru sadar pas iseng menjumlahkan tagihannya. Barang yang dia beli harganya Rp1 juta pas. Tapi tiga cicilannya kalau ditotal jadi Rp1.098.500. Nggak ada yang mencuri — semua biayanya tertulis resmi di ketentuan aplikasi. Masalahnya, biaya-biaya itu ditulis kecil, tersebar, dan nggak pernah ditampilkan sebagai satu angka total di layar checkout. Artikel ini menampilkannya.</p>
@@ -90,18 +92,68 @@
       <p style="margin-top:1em;font-size:15px;"><strong>Catatan:</strong> simulasi Dewi (belanja Rp1 juta, cicilan 3 bulan, total Rp1.098.500) adalah ilustrasi yang dihitung dari skema tarif terverifikasi di atas. Tarif aktual dapat berbeda mengikuti ketentuan aplikasi dan profil pengguna — selalu cek halaman biaya resmi platform yang lo pakai.</p>
     </div>
 
-    <div class="cta">
-      <div class="ornament">&#9670; &#9670; &#9670;</div>
+    <section class="resep" aria-label="Resep Keuangan">
+      <div class="resep-head">
+        <span class="resep-mark">Rx</span>
+        <div>
+          <h2>Resep Keuangan</h2>
+          <p class="resep-sub">Langkah hari ini — centang kalau sudah dilakukan.</p>
+        </div>
+      </div>
+      <ul class="resep-list">
+        <li><label><input type="checkbox"><span>Selalu hitung total bayar (cicilan &times; tenor + semua biaya), bukan cicilan per bulan</span></label></li>
+        <li><label><input type="checkbox"><span>Jangan menumpuk cicilan — tiga cicilan “cuma Rp300 ribuan” yang jalan barengan adalah Rp900 ribu lebih per bulan</span></label></li>
+        <li><label><input type="checkbox"><span>Pakai promo 0% hanya kalau memang lunas dalam sebulan</span></label></li>
+        <li><label><input type="checkbox"><span>Bayar tepat waktu — denda SPayLater 5% per bulan, hampir dua kali lipat bunga bulanannya, plus catatan SLIK OJK</span></label></li>
+        <li><label><input type="checkbox"><span>Kalau barangnya bukan kebutuhan mendesak dan dananya belum ada: tunda, kumpulin dulu</span></label></li>
+      </ul>
+      <p class="resep-note">Centangan ini hanya berlaku di halaman ini — tidak tersimpan permanen.</p>
+    </section>
+
+    <div class="article-cta">
       <p>Suka bedah kayak gini? Versi ringkasnya ada di Instagram <strong>@bedahkeuangan</strong> — follow biar nggak ketinggalan bedah berikutnya.</p>
-      <p style="margin-top:1em;font-size:16px;"><em>Next: Budget 50/30/20 — kenapa formula terkenal itu patah pas diterapkan ke gaji UMR berkeluarga.</em></p>
+      <p class="next"><em>Next: Budget 50/30/20 — kenapa formula terkenal itu patah pas diterapkan ke gaji UMR berkeluarga.</em></p>
     </div>
   </article>
 </main>
 
-<footer>
+<footer class="site-footer">
   <div class="wrap">
     BEDAH KEUANGAN &bull; KEUANGAN PRIBADI &amp; KELUARGA &bull; 2026
   </div>
 </footer>
+
+<div class="sticky-cta" id="stickyCta" role="complementary" aria-label="Bedah Gaji Tracker">
+  <div class="sticky-cta-inner">
+    <div class="sticky-cta-text">
+      <strong>Amankan Arus Kas &mdash; Lihat Bedah Gaji Tracker</strong>
+      <small>Launching segera, info di story @bedahkeuangan</small>
+    </div>
+    <a class="sticky-cta-btn" href="https://www.instagram.com/bedahkeuangan">Lihat Tracker</a>
+    <button class="sticky-cta-close" id="ctaClose" aria-label="Tutup">&times;</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var fill = document.getElementById('progressFill');
+  var cta = document.getElementById('stickyCta');
+  var dismissed = false;
+  function onScroll() {
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var frac = max > 0 ? doc.scrollTop / max : 0;
+    fill.style.width = (frac * 100).toFixed(1) + '%';
+    fill.classList.toggle('has-progress', frac > 0.005);
+    if (!dismissed && frac >= 0.30) cta.classList.add('is-visible');
+  }
+  document.getElementById('ctaClose').addEventListener('click', function () {
+    dismissed = true;
+    cta.classList.remove('is-visible');
+  });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 </body>
 </html>
