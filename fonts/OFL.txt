@@ -1,8 +1,0 @@
-InterTight — Copyright 2020 The InterTight Project Authors
-(https://github.com/impallari/InterTight). Licensed under the SIL Open Font
-License, Version 1.1 (https://scripts.sil.org/OFL). Source: Google Fonts
-(https://fonts.google.com/specimen/Inter+Tight).
-
-Files bundled here: InterTight-Regular.ttf, InterTight-Bold.ttf,
-InterTight-ExtraBold.ttf — used for headlines and body text in the
-Meja Bedah v2 render pipeline.
